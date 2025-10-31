@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leaherre <leaherre@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:58:17 by leaherre          #+#    #+#             */
+/*   Updated: 2025/10/31 15:58:17 by leaherre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 int	ft_printf(char const *, ...)
 {
@@ -7,7 +19,7 @@ int	ft_printf(char const *, ...)
 	int	c;
 	int n;
 	unsigned int n2;
-
+	void p;
 
 	count  = 0;
 
@@ -31,7 +43,7 @@ int	ft_printf(char const *, ...)
 		res = write (1, "%", 1);
 		if (res == -1) 
 			return (-1); 
-		count = res + count;		
+		count = res + count;
 	}	
 	else if (*format == 's')
 	{
@@ -39,7 +51,7 @@ int	ft_printf(char const *, ...)
 		res = ft_putstr(s);
 		if (res == -1)
 			return (-1);
-		count = count + res;	
+		count = count + res;
 	}
 	else if (*format == 'd' || *format == 'i') // funcionan igual de cara a printf
 	{
@@ -57,8 +69,6 @@ int	ft_printf(char const *, ...)
 			return (-1);     
 		count = count + res; 
 	}
-
-	void p;
 	else if (*format == 'p') // void* - imprime direcciones de memoria en hexadecimal arrancando por 0x
 	{
 		p = va_arg(list, void *);
