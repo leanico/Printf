@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "printf.h"
 
-
-static int	ft_putnbr(int n) // chequear de dividirlo en 2
+static int	ft_putnbr(int n)
 {
 	long	nb;
 	int		count;
@@ -42,11 +42,12 @@ static int	ft_putnbr(int n) // chequear de dividirlo en 2
 	return (count);
 }
 
-static int ft_putchar(char c)
+static int	ft_putchar(char c)
 {
 	int	res;
+
 	res = write(1, &c, 1);
-	if (res == -1) 
+	if (res == -1)
 		return (-1);
 	return (1);
 }
