@@ -10,18 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(char const *format, ...)
 {
 	va_list			list;
 	int				count;
 	int				res;
-	int				c;
-	int				n;
-	unsigned int	n2;
-	void			*p;
-	char			*s;
 
 	count = 0;
 	va_start(list, format);
@@ -32,66 +27,59 @@ int	ft_printf(char const *format, ...)
 			format++;
 			if (*format == 'c')
 			{
-				c = va_arg(list, int);
-				res = ft_print_char(c);
+				res = ft_case_c(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == '%')
 			{
-				res = write (1, "%", 1);
+				res = write(1, "%", 1);
 				if (res == -1)
 					return (-1);
 				count = res + count;
 			}
 			else if (*format == 's')
 			{
-				s = va_arg(list, char *);
-				res = ft_putstr(s);
+				res = ft_case_s(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == 'd' || *format == 'i')
 			{
-				n = va_arg(list, int);
-				res = ft_putnbr(n);
+				res = ft_case_di(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == 'u')
 			{
-				n2 = va_arg(list, unsigned int);
-				res = ft_putnbr(n2);
+				res = ft_case_u(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == 'p')
 			{
-				p = va_arg(list, void *);
-				res = ft_printptr((unsigned long long)p);
+				res = ft_case_p(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == 'x')
 			{
-				n2 = va_arg(list, unsigned int);
-				res = ft_hex_base(n2);
+				res = ft_case_x(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else if (*format == 'X')
 			{
-				n2 = va_arg(list, unsigned int);
-				res = ft_hex_base_up(n2);
+				res = ft_case_x2(list);
 				if (res == -1)
 					return (-1);
-				count = count + res;
+				count = res + count;
 			}
 			else
 			{
@@ -101,6 +89,14 @@ int	ft_printf(char const *format, ...)
 				count = count + res;
 				format++;
 			}
+			format++;
+		}
+		else
+		{
+			res = write(1, format, 1);
+			if (res == -1)
+				return (-1);
+			count = count + res;
 			format++;
 		}
 	}

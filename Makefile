@@ -9,6 +9,9 @@ ARFLAGS = rcs
 SRC = ft_printf.c\
 		ft_utilities.c\
 		ft_format.c\
+		ft_num_utilities.c\
+		ft_helpers.c\
+		ft_helpers2.c\
 
 OBJ = $(SRC:.c=.o)
 
@@ -31,4 +34,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
