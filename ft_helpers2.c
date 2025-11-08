@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_helpers2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leaherre <leaherre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 20:13:14 by marvin            #+#    #+#             */
-/*   Updated: 2025/11/06 20:13:14 by marvin           ###   ########.fr       */
+/*   Created: 2025/11/08 17:34:35 by leaherre          #+#    #+#             */
+/*   Updated: 2025/11/08 17:34:35 by leaherre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_case_x(va_list list)
+int	ft_case_xlow(va_list list)
 {
 	int				res;
 	unsigned int	n2;
@@ -24,7 +24,7 @@ int	ft_case_x(va_list list)
 	return (res);
 }
 
-int	ft_case_x2(va_list list)
+int	ft_case_xup(va_list list)
 {
 	int				res;
 	unsigned int	n2;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leaherre <leaherre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 21:02:05 by marvin            #+#    #+#             */
-/*   Updated: 2025/11/05 21:02:05 by marvin           ###   ########.fr       */
+/*   Created: 2025/11/08 17:34:15 by leaherre          #+#    #+#             */
+/*   Updated: 2025/11/08 17:34:15 by leaherre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int		ft_case_s(va_list list);
 int		ft_case_di(va_list list);
 int		ft_case_u(va_list list);
 int		ft_case_p(va_list list);
-int		ft_case_x(va_list list);
-int		ft_case_x2(va_list list);
+int		ft_case_xup(va_list list);
+int		ft_case_xlow(va_list list);
 int		ft_printf_aux(char c, va_list list);
+int		ft_handleformat(char const *format, va_list list);
 
 #endif

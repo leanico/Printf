@@ -12,93 +12,49 @@
 
 #include "ft_printf.h"
 
+int	ft_handleformat(char const *format, va_list list)
+{
+	int	count;
+
+	count = 0;
+	if (*format == 'c')
+		count += ft_case_c(list);
+	else if (*format == '%')
+		count += write(1, "%", 1);
+	else if (*format == 's')
+		count += ft_case_s(list);
+	else if (*format == 'd' || *format == 'i')
+		count += ft_case_di(list);
+	else if (*format == 'u')
+		count += ft_case_u(list);
+	else if (*format == 'p')
+		count += ft_case_p(list);
+	else if (*format == 'x')
+		count += ft_case_xlow(list);
+	else if (*format == 'X')
+		count += ft_case_xup(list);
+	return (count);
+}
+
 int	ft_printf(char const *format, ...)
 {
 	va_list			list;
 	int				count;
-	int				res;
 
 	count = 0;
 	va_start(list, format);
+	if (!format)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
-			{
-				res = ft_case_c(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == '%')
-			{
-				res = write(1, "%", 1);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 's')
-			{
-				res = ft_case_s(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				res = ft_case_di(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 'u')
-			{
-				res = ft_case_u(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 'p')
-			{
-				res = ft_case_p(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 'x')
-			{
-				res = ft_case_x(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else if (*format == 'X')
-			{
-				res = ft_case_x2(list);
-				if (res == -1)
-					return (-1);
-				count = res + count;
-			}
-			else
-			{
-				res = write(1, format, 1);
-				if (res == -1)
-					return (-1);
-				count = count + res;
-				format++;
-			}
-			format++;
+			count += ft_handleformat(format, list);
 		}
 		else
-		{
-			res = write(1, format, 1);
-			if (res == -1)
-				return (-1);
-			count = count + res;
-			format++;
-		}
+			count += write(1, format, 1);
+		format++;
 	}
 	va_end(list);
 	return (count);
